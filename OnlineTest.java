@@ -9,20 +9,37 @@ public class OnlineTest extends JFrame implements ActionListener {
     JButton b1;
     ButtonGroup bg;
     int count = 0, current = 0;
-    TextArea codeBox = new TextArea(20, 50);
+    JScrollPane scrollPane;
+    JTextArea codeBox = new JTextArea(20, 50);
+
     String Q7 = "System.out.println(10 + 20 + 'Java');";
-    String Q9 = "int a = 5;\n"+
-                "System.out.println(a++);";
+    String Q9 = "int a = 5;\n" +
+            "System.out.println(a++);";
 
     OnlineTest(String s) {
         super(s);
         setLayout(null);
-        codeBox.setBackground(Color.LIGHT_GRAY);
-        codeBox.setForeground(Color.BLUE);
-        codeBox.setFont(new Font("Arial", Font.PLAIN, 14));
+        codeBox.setFont(new Font("Serif", Font.BOLD, 15));
+
         l = new JLabel();
         l.setBounds(30, 40, 450, 20);
         add(l);
+
+        scrollPane = new JScrollPane(codeBox);
+        scrollPane.setBounds(300, 80, 250, 100);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setVisible(false);
+        add(scrollPane);
+
+        JPanel pane = new JPanel(new BorderLayout());
+        pane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // 10px padding on all sides
+        pane.setBackground(Color.WHITE);
+        pane.add(codeBox);
+
+        // Now add the panel with padding to the scroll pane
+        scrollPane.setViewportView(pane);
+
         bg = new ButtonGroup();
         for (int i = 0; i < 4; i++) {
             jb[i] = new JRadioButton();
@@ -36,7 +53,7 @@ public class OnlineTest extends JFrame implements ActionListener {
         b1.addActionListener(this);
         set();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(600, 350);
+        setSize(750, 350);
         setLocation(250, 100);
         setVisible(true);
     }
@@ -106,15 +123,16 @@ public class OnlineTest extends JFrame implements ActionListener {
             jb[2].setText("Java30");
             jb[3].setText("1020Java");
             codeBox.setText(Q7);
-            codeBox.setBounds(300, 80, 250, 20);
-            add(codeBox);
+            scrollPane.setBounds(300, 80, 300, 45);
             codeBox.setVisible(true);
+            scrollPane.setVisible(true);
         }
 
         if (current != 6 && current != 8) {
             codeBox.setVisible(false);
+            scrollPane.setVisible(false);
         }
-        
+
         if (current == 7) {
             l.setText("Q8: Which of the following is not a valid access modifier in Java?");
             jb[0].setText("private");
@@ -129,9 +147,9 @@ public class OnlineTest extends JFrame implements ActionListener {
             jb[2].setText("Compiler Error");
             jb[3].setText("Runtime Error");
             codeBox.setText(Q9);
-            codeBox.setBounds(300, 80, 250, 20);
-            add(codeBox);
+            scrollPane.setBounds(300, 100, 200, 60);
             codeBox.setVisible(true);
+            scrollPane.setVisible(true);
         }
         if (current == 9) {
             l.setText("Q10: Which method must be implemented by all Java threads?");
