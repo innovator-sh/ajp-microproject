@@ -33,11 +33,10 @@ public class OnlineTest extends JFrame implements ActionListener {
         add(scrollPane);
 
         JPanel pane = new JPanel(new BorderLayout());
-        pane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // 10px padding on all sides
+        pane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         pane.setBackground(Color.WHITE);
         pane.add(codeBox);
-
-        // Now add the panel with padding to the scroll pane
+        
         scrollPane.setViewportView(pane);
 
         bg = new ButtonGroup();
