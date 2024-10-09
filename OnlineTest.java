@@ -18,7 +18,7 @@ public class OnlineTest extends JFrame implements ActionListener {
     String Q9 = "int a = 5;\n" +
             "System.out.println(a++);";
 
-    OnlineTest(String s) {
+            OnlineTest(String s) {
         super(s);
         setLayout(null);
         codeBox.setFont(new Font("Serif", Font.BOLD, 18));
@@ -61,6 +61,7 @@ public class OnlineTest extends JFrame implements ActionListener {
         add(b1);
         add(timerLabel);
         b1.addActionListener(this);
+
         set();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1000, 460);
@@ -88,7 +89,7 @@ public class OnlineTest extends JFrame implements ActionListener {
     }
 
     void showResults() {
-        JOptionPane.showMessageDialog(this, "Time's up! Correct Answers: " + count);
+        JOptionPane.showMessageDialog(this, "Time's up! \n Your Score is " + count);
         System.exit(0);
     }
 
@@ -100,7 +101,7 @@ public class OnlineTest extends JFrame implements ActionListener {
             current++;
             set();
             if (current == 10) {
-                JOptionPane.showMessageDialog(this, "Correct Answers: " + count);
+                JOptionPane.showMessageDialog(this, "Your Score is " + count);
                 System.exit(0);
             }
         }
@@ -230,6 +231,6 @@ public class OnlineTest extends JFrame implements ActionListener {
     }
 
     public static void main(String s[]) {
-        new OnlineTest("Online Test Of Java");
+        new OnlineTest("Java Online Test");
     }
 }
